@@ -1,0 +1,11 @@
+for i do >$i; done
+end of create
+echo printfiles>&2
+cat >printfiles <<'End of printfiles' 
+for i in *
+do
+	echo
+	echo file $i
+	cat -n $i
+done
+end of printfiles

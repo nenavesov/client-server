@@ -1,0 +1,26 @@
+if test $# = 0 
+then
+	cat=`pwd`
+else
+	oldcat=`pwd`
+	cd $1
+	cat=`pwd`
+	cd $oldcat
+fi
+echo "directory $cat"
+
+count_files=0
+count_dir=0
+
+ls $cat|\
+( while read i
+do
+	if test -d $cat/$i
+	then
+		echo $cat/$i
+		count_dir=$((count_dir + 1))
+	elif test -e $cat/$i
+	then
+		count_files=$(($count_files + 1))
+	fi
+done && echo Files: $count_files && echo Directorys: $count_dir)
